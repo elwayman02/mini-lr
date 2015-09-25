@@ -3,11 +3,11 @@ var port = process.env.LR_PORT || process.env.PORT || 35729;
 var fs      = require('fs');
 var path    = require('path');
 var express = require('express');
-var tinylr  = require('../..');
+var minilr  = require('../..');
 var body    = require('body-parser');
-var debug   = require('debug')('tinylr:server');
+var debug   = require('debug')('minilr:server');
 
-process.env.DEBUG = process.env.DEBUG || 'tinylr*';
+process.env.DEBUG = process.env.DEBUG || 'minilr*';
 
 var app = require('./app');
 

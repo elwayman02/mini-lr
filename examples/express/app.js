@@ -1,10 +1,10 @@
 var fs      = require('fs');
 var path    = require('path');
 var express = require('express');
-var tinylr  = require('../..');
-var debug   = require('debug')('tinylr:server');
+var minilr  = require('../..');
+var debug   = require('debug')('minilr:server');
 
-process.env.DEBUG = process.env.DEBUG || 'tinylr*';
+process.env.DEBUG = process.env.DEBUG || 'minilr*';
 
 var app = module.exports = express();
 
@@ -33,7 +33,7 @@ var watch = (function watch(em) {
   em = em || new (require('events').EventEmitter)();
 
   em.on('rename', function(file) {
-    tinylr.changed(file);
+    minilr.changed(file);
   });
 
   fs.watch(path.join(__dirname, 'styles/site.css'), throttle(200, function(ev, filename) {
@@ -46,4 +46,4 @@ var watch = (function watch(em) {
 app
   .use(logger())
   .use('/', express.static(path.join(__dirname)))
-  .use(tinylr.middleware({ app: app }));
+  .use(minilr.middleware({ app: app }));

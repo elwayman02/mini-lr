@@ -4,6 +4,7 @@ This script manages a tiny [LiveReload](http://livereload.com/) server
 implementation.
 
 Fork of the seemingly abandoned [tiny-lr](https://github.com/mklabs/tiny-lr) project, providing support for `npm v3`.
+The quickest way to begin using this fork in your project is to simply refactor `require('tiny-lr')` to `require('mini-lr')`.
 
 Mini-lr
 [![NPM](https://nodei.co/npm/mini-lr.png?downloads=true&stars=true)](https://nodei.co/npm/mini-lr/)
@@ -53,13 +54,13 @@ The best way to integrate the runner in your workflow is to add it as a `reload`
 step within your build tool.
 
 ```js
-var tinylr = require('tiny-lr');
+var minilr = require('mini-lr');
 
 // standard LiveReload port
 var port = 35729;
 
-// tinylr(opts) => new tinylr.Server(opts);
-tinylr().listen(port, function() {
+// minilr(opts) => new minilr.Server(opts);
+minilr().listen(port, function() {
   console.log('... Listening on %s ...', port);
 })
 ```
@@ -67,7 +68,7 @@ tinylr().listen(port, function() {
 You can define your own route and listen for specific request:
 
 ```js
-var server = tinylr();
+var server = minilr();
 
 server.on('GET /myplace', function(req, res) {
   res.write('Mine');
@@ -85,10 +86,10 @@ This will close any websocket connection established and emit a close event.
 
 ### Middleware
 
-To use as a connect / express middleware, tiny-lr needs query /
+To use as a connect / express middleware, mini-lr needs query /
 bodyParser middlewares prior in the stack (to handle POST requests)
 
-Any handled requests ends at the tinylr level, not found and errors are
+Any handled requests ends at the minilr level, not found and errors are
 nexted to the rest of the stack.
 
 ```js
@@ -96,24 +97,24 @@ var port = process.env.LR_PORT || process.env.PORT || 35729;
 
 var path    = require('path');
 var express = require('express');
-var tinylr  = require('tiny-lr');
+var minilr  = require('mini-lr');
 var body    = require('body-parser');
 
 var app = express();
 
-// This binds both express app and tinylr on the same port
+// This binds both express app and minilr on the same port
 
 
 app
   .use(body())
-  .use(tinylr.middleware({ app: app }))
+  .use(minilr.middleware({ app: app }))
   .use(express.static(path.resolve('./')))
   .listen(port, function() {
     console.log('listening on %d', port);
   });
 ```
 
-The port you listen on is important, and tinylr should **always** listen on
+The port you listen on is important, and minilr should **always** listen on
 the LiveReload standard one: `35729`. Otherwise, you won't be able to rely
 on the browser extensions, though you can still use the manual snippet
 approach.
@@ -132,16 +133,16 @@ This repository defines a bin wrapper you can use and install with:
 
     npm install make-livereload -g
 
-It bundles the same bin wrapper previously used in tiny-lr repo.
+It bundles the same bin wrapper previously used in mini-lr repo.
 
-    Usage: tiny-lr [options]
+    Usage: mini-lr [options]
 
     Options:
 
       -h, --help     output usage information
       -V, --version  output the version number
       port           -p
-      pid            Path to the generated PID file (default: ./tiny-lr.pid)
+      pid            Path to the generated PID file (default: ./mini-lr.pid)
 
 ### Using gulp
 
@@ -168,16 +169,16 @@ See [gulp-livereload](https://github.com/vohof/gulp-livereload) repo.
 
 
 # TOC
-   - [tiny-lr](#tiny-lr)
-     - [GET /](#tiny-lr-get-)
-     - [GET /changed](#tiny-lr-get-changed)
-     - [POST /changed](#tiny-lr-post-changed)
-     - [GET /livereload.js](#tiny-lr-get-livereloadjs)
-     - [GET /kill](#tiny-lr-get-kill)
+   - [mini-lr](#mini-lr)
+     - [GET /](#mini-lr-get-)
+     - [GET /changed](#mini-lr-get-changed)
+     - [POST /changed](#mini-lr-post-changed)
+     - [GET /livereload.js](#mini-lr-get-livereloadjs)
+     - [GET /kill](#mini-lr-get-kill)
 <a name="" />
 
-<a name="tiny-lr" />
-# tiny-lr
+<a name="mini-lr" />
+# mini-lr
 accepts ws clients.
 
 ```js
@@ -199,7 +200,7 @@ ws.onmessage = function(event) {
   assert.deepEqual(event.data, JSON.stringify({
     command: 'hello',
     protocols: ['http://livereload.com/protocols/official-7'],
-    serverName: 'tiny-lr'
+    serverName: 'mini-lr'
   }));
 
   assert.ok(Object.keys(server.clients).length);
@@ -221,9 +222,9 @@ request(this.server)
   });
 ```
 
-<a name="tiny-lr" />
-# tiny-lr
-<a name="tiny-lr-get-" />
+<a name="mini-lr" />
+# mini-lr
+<a name="mini-lr-get-" />
 ## GET /
 respond with nothing, but respond.
 
@@ -231,7 +232,7 @@ respond with nothing, but respond.
 request(this.server)
   .get('/')
   .expect('Content-Type', /json/)
-  .expect('{"tinylr":"Welcome","version":"0.0.1"}')
+  .expect('{"minilr":"Welcome","version":"0.0.1"}')
   .expect(200, done);
 ```
 
@@ -245,7 +246,7 @@ request(this.server)
   .expect(404, done);
 ```
 
-<a name="tiny-lr-get-changed" />
+<a name="mini-lr-get-changed" />
 ## GET /changed
 with no clients, no files.
 
@@ -268,7 +269,7 @@ request(this.server)
   .expect(200, done);
 ```
 
-<a name="tiny-lr-post-changed" />
+<a name="mini-lr-post-changed" />
 ## POST /changed
 with no clients, no files.
 
@@ -294,7 +295,7 @@ request(this.server)
   .expect(200, done);
 ```
 
-<a name="tiny-lr-get-livereloadjs" />
+<a name="mini-lr-get-livereloadjs" />
 ## GET /livereload.js
 respond with livereload script.
 
@@ -305,7 +306,7 @@ request(this.server)
   .expect(200, done);
 ```
 
-<a name="tiny-lr-get-kill" />
+<a name="mini-lr-get-kill" />
 ## GET /kill
 shutdown the server.
 
@@ -322,12 +323,14 @@ request(server)
 
 ## Thanks!
 
-- Tiny-lr is a [LiveReload](http://livereload.com/) implementation. They
+- mini-lr is a [LiveReload](http://livereload.com/) implementation. They
   really made frontend editing better for a lot of us. They have a
   [LiveReload App on the Mac App Store](https://itunes.apple.com/us/app/livereload/id482898991)
   you might want to check out.
+  
+- To [tiny-lr](https://github.com/mklabs/tiny-lr), the original project this was forked from
 
-- To all [contributors](https://github.com/mklabs/tiny-lr/graphs/contributors)
+- To all [contributors](https://github.com/elwayman02/mini-lr/graphs/contributors)
 
 - [@FGRibreau](https://github.com/FGRibreau) / [pid.js
   gist](https://gist.github.com/1846952)) for the background friendly
