@@ -2,7 +2,7 @@
   "author": "mklabs",
   "name": "mini-lr",
   "description": "Mini LiveReload server, background-friendly",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "homepage": "https://github.com/elwayman02/mini-lr",
   "bugs": "https://github.com/elwayman02/mini-lr/issues",
   "repository": {
@@ -27,7 +27,7 @@
     "get-change": "curl http://localhost:35729/changed?files=site.css"
   },
   "dependencies": {
-    "body-parser": "~1.8.0",
+    "body-parser": "~1.14.0",
     "debug": "~2.0.0",
     "faye-websocket": "~0.7.2",
     "livereload-js": "^2.2.0",
