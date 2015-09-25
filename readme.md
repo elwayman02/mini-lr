@@ -1,8 +1,14 @@
-# tiny-lr [![Build Status](https://travis-ci.org/mklabs/tiny-lr.svg?branch=master)](https://travis-ci.org/mklabs/tiny-lr)
+# mini-lr [![Build Status](https://travis-ci.org/elwayman02/mini-lr.svg?branch=master)](https://travis-ci.org/elwayman02/mini-lr)
 
 This script manages a tiny [LiveReload](http://livereload.com/) server
 implementation.
 
+Fork of the seemingly abandoned [tiny-lr](https://github.com/mklabs/tiny-lr) project, providing support for `npm v3`.
+
+Mini-lr
+[![NPM](https://nodei.co/npm/mini-lr.png?downloads=true&stars=true)](https://nodei.co/npm/mini-lr/)
+
+Tiny-lr
 [![NPM](https://nodei.co/npm/tiny-lr.png?downloads=true&stars=true)](https://nodei.co/npm/tiny-lr/)
 
 It exposes an HTTP server and express middleware, with a very basic REST
