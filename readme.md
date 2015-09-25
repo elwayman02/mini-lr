@@ -6,10 +6,8 @@ implementation.
 Fork of the seemingly abandoned [tiny-lr](https://github.com/mklabs/tiny-lr) project, providing support for `npm v3`.
 The quickest way to begin using this fork in your project is to simply refactor `require('tiny-lr')` to `require('mini-lr')`.
 
-Mini-lr
 [![NPM](https://nodei.co/npm/mini-lr.png?downloads=true&stars=true)](https://nodei.co/npm/mini-lr/)
 
-Tiny-lr
 [![NPM](https://nodei.co/npm/tiny-lr.png?downloads=true&stars=true)](https://nodei.co/npm/tiny-lr/)
 
 It exposes an HTTP server and express middleware, with a very basic REST
