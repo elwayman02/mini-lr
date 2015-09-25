@@ -4,7 +4,7 @@ var assert     = require('assert');
 var connect    = require('connect');
 var express    = require('express');
 var request    = require('supertest');
-var debug      = require('debug')('tinylr:test');
+var debug      = require('debug')('minilr:test');
 var Server     = require('..').Server;
 
 var npmenv = process.env;
@@ -39,7 +39,7 @@ function suite(name, app) {return function() {
       request(this.server)
         .get('/')
         .expect('Content-Type', /json/)
-        .expect(/\{"tinylr":"Welcome","version":"[\d].[\d].[\d]+"\}/)
+        .expect(/\{"minilr":"Welcome","version":"[\d].[\d].[\d]+"\}/)
         .expect(200, done);
     });
 

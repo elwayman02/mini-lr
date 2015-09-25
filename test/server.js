@@ -6,7 +6,7 @@ var Server = require('..').Server;
 
 var listen = require('./helpers/listen');
 
-describe('tiny-lr', function() {
+describe('mini-lr', function() {
 
   before(listen());
 
@@ -15,7 +15,7 @@ describe('tiny-lr', function() {
       request(this.server)
         .get('/')
         .expect('Content-Type', /json/)
-        .expect(/\{"tinylr":"Welcome","version":"[\d].[\d].[\d]+"\}/)
+        .expect(/\{"minilr":"Welcome","version":"[\d].[\d].[\d]+"\}/)
         .expect(200, done);
     });
 

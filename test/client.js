@@ -8,7 +8,7 @@ var Server = require('..').Server;
 
 var listen = require('./helpers/listen');
 
-describe('tiny-lr', function() {
+describe('mini-lr', function() {
 
   before(listen());
 
@@ -31,7 +31,7 @@ describe('tiny-lr', function() {
       assert.deepEqual(event.data, JSON.stringify({
         command: 'hello',
         protocols: ['http://livereload.com/protocols/official-7'],
-        serverName: 'tiny-lr'
+        serverName: 'mini-lr'
       }));
 
       assert.ok(Object.keys(server.clients).length);

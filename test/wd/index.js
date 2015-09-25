@@ -8,7 +8,7 @@ describe('mocha spec examples', function() {
 
   this.timeout(10000);
 
-  describe('tinylr', function() {
+  describe('minilr', function() {
     var browser;
 
     before(function(done) {
