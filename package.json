@@ -2,7 +2,7 @@
   "author": "mklabs",
   "name": "mini-lr",
   "description": "Mini LiveReload server, background-friendly",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "homepage": "https://github.com/elwayman02/mini-lr",
   "bugs": "https://github.com/elwayman02/mini-lr/issues",
   "repository": {
